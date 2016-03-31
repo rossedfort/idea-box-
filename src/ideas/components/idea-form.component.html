@@ -1,0 +1,14 @@
+<div class="center">
+  <h3 style="text-align: center">Create an Idea</h3>
+  <form class="idea-form center" [ngFormModel]="ideaForm" (submit)="onSubmit(ideaForm.value)">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" required ngControl="title">
+    </div>
+    <div class="form-group">
+      <label for="body">Body</label>
+      <input type="text" class="form-control" required ngControl="body">
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+</div>
