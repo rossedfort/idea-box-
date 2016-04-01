@@ -5,7 +5,8 @@ import {IdeaService} from '../../shared/services/idea.service';
 
 @Component({
     selector: 'ideas',
-    templateUrl: 'ideas/components/ideas.component.html'
+    templateUrl: './ideas.component.html',
+    moduleId: module.id
 })
 
 export class IdeasComponent implements OnInit {

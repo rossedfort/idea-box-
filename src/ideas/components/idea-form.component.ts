@@ -5,10 +5,11 @@ import {IdeaService} from '../../shared/services/idea.service';
 
 @Component({
   selector: 'idea-form',
-  templateUrl: 'ideas/components/idea-form.component.html',
+  templateUrl: './idea-form.component.html',
   providers: [
     FORM_DIRECTIVES
-  ]
+  ],
+  moduleId: module.id
 })
 
 export class IdeaFormComponent {

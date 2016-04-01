@@ -2,12 +2,12 @@ import { it, describe, expect, inject, beforeEachProviders } from 'angular2/test
 import { IdeasComponent } from './ideas.component';
 
 describe('Ideas Component', () => {
-  beforeEachProviders(() => [
-    IdeasComponent
-  ]);
+  it('Should create an instance of Ideas Component', () => {
+    expect(IdeasComponent).toBeDefined();
+  });
 
-  it('Should create an instance of Ideas Component',
-   inject([IdeasComponent], (component) => {
-    expect(true);
-  }));
+  it('Should have the ngOnInit() and getIdeas() method available', () => {
+    expect(IdeasComponent.ngOnInit()).toBeDefined();
+    expect(IdeasComponent.getIdeas()).toBeDefined();
+  });
 });
