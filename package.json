@@ -105,10 +105,13 @@
     "yargs": "^4.2.0"
   },
   "dependencies": {
+    "@angular2-material/checkbox": "^2.0.0-alpha.1",
+    "@angular2-material/core": "^2.0.0-alpha.1",
     "angular2": "2.0.0-beta.13",
     "es6-module-loader": "^0.17.8",
     "es6-promise": "^3.1.2",
     "es6-shim": "0.35.0",
+    "ng2-material": "^0.3.4",
     "reflect-metadata": "0.1.2",
     "rxjs": "5.0.0-beta.2",
     "systemjs": "~0.19.25",
