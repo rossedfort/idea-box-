@@ -1,4 +1,5 @@
 import { it, describe, expect, inject, beforeEachProviders } from 'angular2/testing';
+import { IdeaFormComponent } from './idea-form.component';
 import { IdeaService } from '../../shared/services/idea.service';
 import { BaseRequestOptions, Http } from 'angular2/http';
 import { Observable } from 'rxjs/Rx';
@@ -6,8 +7,8 @@ import { provide } from 'angular2/core';
 import { MockBackend } from 'angular2/http/testing';
 
 export function main () {
-  describe('Idea Service', () => {
-    class MockIdeaData extends IdeaService {
+  describe('Idea Form Component', () => {
+    class MockIdeaData {
       public getIdeas() {
         return Observable.of(MockResponse());
       }
@@ -17,15 +18,13 @@ export function main () {
         useFactory: (backend, defaultOptions) => new Http(backend, defaultOptions),
         deps: [MockBackend, BaseRequestOptions]
       }),
+      IdeaFormComponent,
       provide(IdeaService, {useClass: MockIdeaData}),
-      MockBackend,
-      BaseRequestOptions
     ]);
 
-    it('Should have a getIdeas() method that returns an array idea objects', inject([IdeaService], (ideaService) => {
-      expect(ideaService.getIdeas().value).toEqual(MockResponse());
-      expect(MockResponse()).toEqual(jasmine.any(Array));
-      expect(MockResponse()[0]).toEqual(jasmine.any(Object));
+    it('Should have an onSubmit() method', inject([IdeaFormComponent], (ideaFormComponent) => {
+      expect(ideaFormComponent).toBeDefined();
+      expect(ideaFormComponent.onSubmit).toBeDefined();
     }));
   });
 
