@@ -18,7 +18,14 @@ export class IdeaService {
       .catch(this.handleError)
       .subscribe(
         ideas => this.ideas = ideas
-      );
+    );
+  }
+  
+  getIdea (id) {
+    let url = `${this._ideasUrl}/${id}`;
+    return this.http.get(url)
+      .map(res => res.json())
+      .catch(this.handleError);
   }
 
   createIdea (title, body): void {

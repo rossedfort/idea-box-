@@ -1,0 +1,14 @@
+<div *ngIf="idea" class="idea-details right">
+  <h2>{{idea.title}} details!</h2>
+  <div style="margin-top: 25px">
+    <label>id: </label>{{idea.id}}</div>
+  <div style="margin-top: 25px">
+    <label>title: </label>
+    <input [(ngModel)]="idea.title" placeholder="title" />
+  </div>
+  <div style="margin-top: 25px">
+    <label>body: </label>
+    <input [(ngModel)]="idea.body" placeholder="body" />
+  </div>
+  <button>Update</button>
+</div>

@@ -62,10 +62,23 @@ button:hover {
   padding: 10px;
 }
 
+.left {
+  width: 40%;
+  float: left;
+  margin: 5%;
+}
+
+.right {
+  width: 40%;
+  float: right;
+  margin: 5%;
+}
+
 .idea {
   border: 1px solid #ccc;
   padding: 10px;
   margin-top: 25px;
+  box-shadow: 5px 5px 10px #ccc;
 }
 
 .title {
@@ -82,4 +95,11 @@ button:hover {
 
 .idea p {
   display: inline;
+}
+
+.idea-details {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-top: 200px;
+  box-shadow: 5px 5px 10px #ccc;
 }

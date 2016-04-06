@@ -24,5 +24,5 @@ export class IdeaFormComponent {
 
   onSubmit(ideaForm) {
     this._ideaService.createIdea(ideaForm.title, ideaForm.body);
-    }
+  }
 }
