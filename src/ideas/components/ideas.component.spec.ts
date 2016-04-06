@@ -2,9 +2,13 @@ import { it, describe, expect, inject, beforeEachProviders } from 'angular2/test
 import { IdeasComponent } from './ideas.component';
 import { IdeaService } from '../../shared/services/idea.service';
 import { BaseRequestOptions, Http } from 'angular2/http';
+import {Location, Router, RouteRegistry, ROUTER_PRIMARY_COMPONENT} from 'angular2/router';
 import { Observable } from 'rxjs/Rx';
 import { provide } from 'angular2/core';
 import { MockBackend } from 'angular2/http/testing';
+import {SpyLocation} from 'angular2/src/mock/location_mock';
+import {RootRouter} from 'angular2/src/router/router';
+
 
 export function main () {
   describe('Ideas Component', () => {
@@ -20,6 +24,10 @@ export function main () {
       }),
       IdeasComponent,
       provide(IdeaService, {useClass: MockIdeaData}),
+      RouteRegistry,
+      provide(Location, { useClass: SpyLocation }),
+      provide(ROUTER_PRIMARY_COMPONENT, { useValue: IdeasComponent }),
+      provide(Router, { useClass: RootRouter }),
     ]);
 
     it('Should create an instance of Ideas Component', inject([IdeasComponent], (ideasComponent) => {

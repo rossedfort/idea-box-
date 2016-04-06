@@ -23,6 +23,6 @@ export class IdeaDetailsComponent implements OnInit {
       .subscribe(
         (idea) => {
           this.idea = idea;
-      })
+      });
   }
 }
