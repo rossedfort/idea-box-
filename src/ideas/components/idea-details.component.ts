@@ -34,6 +34,6 @@ export class IdeaDetailsComponent implements OnInit {
   }
   onUpdate(ideaForm) {
     this._ideaService.updateIdea(ideaForm.id, ideaForm.title, ideaForm.body);
-    this._router.navigate(['IdeasComponent'])
+    this._router.navigate(['IdeasComponent']);
   }
 }
