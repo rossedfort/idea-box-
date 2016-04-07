@@ -1,14 +1,18 @@
 <div *ngIf="idea" class="idea-details right">
   <h2>{{idea.title}} details!</h2>
   <div style="margin-top: 25px">
-    <label>id: </label>{{idea.id}}</div>
-  <div style="margin-top: 25px">
-    <label>title: </label>
-    <input [(ngModel)]="idea.title" placeholder="title" />
+    <p>id: {{idea.id}}</p>
   </div>
-  <div style="margin-top: 25px">
-    <label>body: </label>
-    <input [(ngModel)]="idea.body" placeholder="body" />
-  </div>
-  <button>Update</button>
-</div>
+  <form [ngFormModel]="ideaForm" (submit)="onUpdate(ideaForm.value)">
+    <div style="margin-top: 25px">
+      <label>title: </label>
+      <input required ngControl="title" [(ngModel)]="idea.title" placeholder="title" />
+    </div>
+    <div style="margin-top: 25px">
+      <label>body: </label>
+      <input required ngControl="body" [(ngModel)]="idea.body" placeholder="body" />
+    </div>
+    <input required ngControl="id" [(ngModel)]="idea.id" type="hidden" placeholder="{{idea.id}}" />
+    <button type="submit">Update</button>
+  </form>
+</div>`

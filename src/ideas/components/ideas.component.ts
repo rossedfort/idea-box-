@@ -14,17 +14,13 @@ import {IdeaDetailsComponent} from './idea-details.component';
 
 export class IdeasComponent implements OnInit {
   constructor(public ideaService: IdeaService,
-              private _router: Router) { }
-
+              private _router: Router) {}
   errorMessage: string;
   ideas:Idea[];
-
   ngOnInit() { this.getIdeas(); };
-
   getIdeas() {
     this.ideaService.getIdeas();
   }
-  
   goToDetails(idea) {
     this._router.navigate(['IdeaDetails', { id: idea.id }]);
   }

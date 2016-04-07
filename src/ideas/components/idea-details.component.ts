@@ -1,8 +1,9 @@
-import {Component, OnInit, Input} from 'angular2/core';
+import { FormBuilder, Validators } from 'angular2/common';
+import { Component, OnInit, Input } from 'angular2/core';
 import { RouteParams } from 'angular2/router';
 
-import {IdeaService} from '../../shared/services/idea.service';
-import {Idea} from '../models/idea';
+import { IdeaService } from '../../shared/services/idea.service';
+import { Idea } from '../models/idea';
 
 @Component({
   selector: 'idea-details',
@@ -12,17 +13,23 @@ import {Idea} from '../models/idea';
 
 export class IdeaDetailsComponent implements OnInit {
   @Input() idea: Idea;
-  constructor(
-    private _params: RouteParams,
-    private _ideaService: IdeaService
-  ) {}
-
+  public ideaForm: Object;
+  constructor( private _params: RouteParams, private _ideaService: IdeaService, fb: FormBuilder) {
+    this.ideaForm = fb.group({
+      id: ['', Validators.required],
+      title: ['', Validators.required],
+      body: ['', Validators.required]
+    });
+  }
   ngOnInit() {
     let id = this._params.get('id');
     this._ideaService.getIdea(id)
       .subscribe(
         (idea) => {
           this.idea = idea;
-      });
+    });
+  }
+  onUpdate(ideaForm) {
+    this._ideaService.updateIdea(ideaForm.id, ideaForm.title, ideaForm.body);
   }
 }

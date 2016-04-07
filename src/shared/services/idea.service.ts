@@ -20,16 +20,14 @@ export class IdeaService {
         ideas => this.ideas = ideas
     );
   }
-  
   getIdea (id) {
     let url = `${this._ideasUrl}/${id}`;
     return this.http.get(url)
       .map(res => res.json())
       .catch(this.handleError);
   }
-
   createIdea (title, body): void {
-    var headers = new Headers();
+    let headers = new Headers();
 
     headers.append('Content-Type', 'application/json');
 
@@ -43,7 +41,18 @@ export class IdeaService {
           this.ideas.push(idea);
       });
   }
-
+  updateIdea (id, title, body) {
+    let headers = new Headers();
+    let url = `${this._ideasUrl}/${id}`;
+    headers.append('Content-Type', 'application/json');
+    let reqBody = JSON.stringify( {idea: { id, title, body }});
+    this.http.put(url, reqBody, {headers: headers})
+      .map(res => res.json())
+      .catch(this.handleError)
+      .subscribe(idea => {
+        this.ideas.push(idea);
+      });
+  }
   private handleError (error: Response) {
     console.error(error);
     return Observable.throw(error.json().error || 'Server error');
