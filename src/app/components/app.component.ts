@@ -8,9 +8,9 @@ import {IdeaDetailsComponent} from '../../ideas/components/idea-details.componen
 
 @Component({
     selector: 'idea-box-angular',
-    template: `<h1 class="center" style="text-align: center">Welcome to Idea Box - Angular</h1>
+    template: `<button class="left button" [routerLink]="['IdeasComponent']">Ideas</button>
+               <h1 class="center" style="text-align: center">Welcome to Idea Box</h1>
                <idea-form></idea-form>
-               <ideas></ideas>
                <router-outlet></router-outlet>`,
     providers: [
       IdeaService
@@ -18,7 +18,8 @@ import {IdeaDetailsComponent} from '../../ideas/components/idea-details.componen
     directives: [IdeaFormComponent, IdeasComponent, ROUTER_DIRECTIVES]
 })
 @RouteConfig([
-  {path:'/idea/:id', name: 'IdeaDetails',   component: IdeaDetailsComponent}
+  {path: '/ideas', name: 'IdeasComponent', component: IdeasComponent, useAsDefault: true},
+  {path:'/idea/:id', name: 'IdeaDetails', component: IdeaDetailsComponent}
 ])
 
 export class AppComponent { }

@@ -50,7 +50,7 @@ export class IdeaService {
       .map(res => res.json())
       .catch(this.handleError)
       .subscribe(idea => {
-        this.ideas.push(idea);
+        this.getIdeas();
       });
   }
   private handleError (error: Response) {

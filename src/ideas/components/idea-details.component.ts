@@ -1,6 +1,6 @@
 import { FormBuilder, Validators } from 'angular2/common';
 import { Component, OnInit, Input } from 'angular2/core';
-import { RouteParams } from 'angular2/router';
+import { RouteParams, Router } from 'angular2/router';
 
 import { IdeaService } from '../../shared/services/idea.service';
 import { Idea } from '../models/idea';
@@ -14,7 +14,10 @@ import { Idea } from '../models/idea';
 export class IdeaDetailsComponent implements OnInit {
   @Input() idea: Idea;
   public ideaForm: Object;
-  constructor( private _params: RouteParams, private _ideaService: IdeaService, fb: FormBuilder) {
+  constructor(private _params: RouteParams,
+              private _ideaService: IdeaService,
+              fb: FormBuilder,
+              private _router: Router) {
     this.ideaForm = fb.group({
       id: ['', Validators.required],
       title: ['', Validators.required],
@@ -31,5 +34,6 @@ export class IdeaDetailsComponent implements OnInit {
   }
   onUpdate(ideaForm) {
     this._ideaService.updateIdea(ideaForm.id, ideaForm.title, ideaForm.body);
+    this._router.navigate(['IdeasComponent'])
   }
 }

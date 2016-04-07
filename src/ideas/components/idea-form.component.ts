@@ -14,14 +14,12 @@ import {IdeaService} from '../../shared/services/idea.service';
 
 export class IdeaFormComponent {
   public ideaForm: Object;
-
   constructor(private _ideaService: IdeaService, fb: FormBuilder) {
     this.ideaForm = fb.group({
       title: ['', Validators.required],
       body: ['', Validators.required]
     });
   }
-
   onSubmit(ideaForm) {
     this._ideaService.createIdea(ideaForm.title, ideaForm.body);
   }
