@@ -1,24 +1,26 @@
 import {Http, Response, Headers} from 'angular2/http';
 import {Injectable}     from 'angular2/core';
-import {Idea}           from '../../ideas/models/idea';
+import {Idea, ideas, AppStore}           from '../../ideas/models/idea';
 import {Observable}     from 'rxjs/Observable';
+import {Store} from '@ngrx/store';
 
 @Injectable()
 export class IdeaService {
-  public ideas: Idea[];
-  constructor (private http: Http) {
-    this.ideas = [];
+  ideas: Observable<Array<Idea>>;
+  constructor (private http: Http, private store: Store<AppStore>) {
+    this.ideas = store.select('ideas');
   }
 
   private _ideasUrl = 'http://localhost:3000/api/v1/ideas';
 
-  getIdeas (): void {
+  getIdeas () {
     this.http.get(this._ideasUrl)
       .map(res => res.json())
       .catch(this.handleError)
-      .subscribe(
-        ideas => this.ideas = ideas
-    );
+      .map(payload => ({ type: 'ADD_IDEAS', payload }))
+      .subscribe(action => {
+        this.store.dispatch(action);
+      });
   }
   getIdea (id) {
     let url = `${this._ideasUrl}/${id}`;
@@ -28,18 +30,13 @@ export class IdeaService {
   }
   createIdea (title, body): void {
     let headers = new Headers();
-
     headers.append('Content-Type', 'application/json');
-
     let reqBody = JSON.stringify({ title, body });
-
     this.http.post(this._ideasUrl, reqBody, {headers: headers})
       .map(res => res.json())
       .catch(this.handleError)
-      .subscribe(
-        (idea) => {
-          this.ideas.push(idea);
-      });
+      .map(payload => ({ type: 'CREATE_IDEA', payload }))
+      .subscribe(action => this.store.dispatch(action));
   }
   updateIdea (id, title, body) {
     let headers = new Headers();
@@ -49,9 +46,7 @@ export class IdeaService {
     this.http.put(url, reqBody, {headers: headers})
       .map(res => res.json())
       .catch(this.handleError)
-      .subscribe(idea => {
-        this.getIdeas();
-      });
+      .subscribe(action => this.store.dispatch({ type: 'UPDATE_IDEA' }));
   }
   private handleError (error: Response) {
     console.error(error);

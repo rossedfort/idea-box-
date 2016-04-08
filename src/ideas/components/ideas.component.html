@@ -1,5 +1,5 @@
 <div class="ideas center">
-  <div *ngFor="#idea of ideaService.ideas">
+  <div *ngFor="#idea of ideas | async">
     <div class="idea" (click)="goToDetails(idea)">
       <h1>Idea {{ idea.id }}</h1>
       <h3 class="title">title: {{ idea.title }}</h3>

@@ -19,7 +19,7 @@ import {IdeaDetailsComponent} from '../../ideas/components/idea-details.componen
 })
 @RouteConfig([
   {path: '/ideas', name: 'IdeasComponent', component: IdeasComponent, useAsDefault: true},
-  {path:'/idea/:id', name: 'IdeaDetails', component: IdeaDetailsComponent}
+  {path: '/idea/:id', name: 'IdeaDetails', component: IdeaDetailsComponent}
 ])
 
 export class AppComponent { }
