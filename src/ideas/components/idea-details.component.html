@@ -3,7 +3,7 @@
   <div style="margin-top: 25px">
     <p>id: {{idea.id}}</p>
   </div>
-  <form [ngFormModel]="ideaForm" (submit)="onUpdate(ideaForm.value)">
+  <form [ngFormModel]="ideaForm">
     <div style="margin-top: 25px">
       <label>title: </label>
       <input required ngControl="title" [(ngModel)]="idea.title" placeholder="title" />
@@ -13,6 +13,6 @@
       <input required ngControl="body" [(ngModel)]="idea.body" placeholder="body" />
     </div>
     <input required ngControl="id" [(ngModel)]="idea.id" type="hidden" placeholder="{{idea.id}}" />
-    <button type="submit">Update</button>
+    <button (click)="onUpdate(ideaForm.value)">Update</button>
   </form>
 </div>
