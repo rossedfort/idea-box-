@@ -1,6 +1,6 @@
 import {Http, Response, Headers} from 'angular2/http';
 import {Injectable}     from 'angular2/core';
-import {Idea, ideas, AppStore}           from '../../ideas/models/idea';
+import {Idea, AppStore}           from '../../ideas/models/idea';
 import {Observable}     from 'rxjs/Observable';
 import {Store} from '@ngrx/store';
 

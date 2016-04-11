@@ -1,9 +1,11 @@
 import { FormBuilder, Validators } from 'angular2/common';
-import { Component, OnInit, Input } from 'angular2/core';
+import { Component, OnInit } from 'angular2/core';
 import { RouteParams, Router } from 'angular2/router';
+import { Observable } from 'rxjs/Observable';
+import { Store } from '@ngrx/store';
 
 import { IdeaService } from '../../shared/services/idea.service';
-import { Idea } from '../models/idea';
+import { Idea, AppStore } from '../models/idea';
 
 @Component({
   selector: 'idea-details',
@@ -12,18 +14,23 @@ import { Idea } from '../models/idea';
 })
 
 export class IdeaDetailsComponent implements OnInit {
-  @Input() idea: Idea;
-  public ideaForm: Object;
+  ideaSubscription: Observable<Idea>;
+  idea: Idea;
+  ideaForm: Object;
+  originalName: string;
+  selectedIdea: Idea;
   constructor(private _params: RouteParams,
+              private fb: FormBuilder,
+              private _store: Store<AppStore>,
               private _ideaService: IdeaService,
-              fb: FormBuilder,
               private _router: Router) {
-    this.ideaForm = fb.group({
-      id: ['', Validators.required],
-      title: ['', Validators.required],
-      body: ['', Validators.required]
-    });
-  }
+                this.ideaSubscription = _store.select('selectedIdea');
+                this.ideaSubscription.subscribe(idea => this.selectedIdea = idea);
+                this.ideaForm = fb.group({
+                  title: [this.selectedIdea.title, Validators.required],
+                  body: [this.selectedIdea.body, Validators.required]
+                });
+              }
   ngOnInit() {
     let id = this._params.get('id');
     this._ideaService.getIdea(id)

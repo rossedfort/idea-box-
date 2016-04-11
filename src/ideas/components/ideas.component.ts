@@ -1,6 +1,6 @@
 import {Router} from 'angular2/router';
 import {Observable} from 'rxjs/Observable';
-import {Component, ChangeDetectionStrategy} from 'angular2/core';
+import {Component} from 'angular2/core';
 import {NgFor} from 'angular2/common';
 import {Store} from '@ngrx/store';
 
@@ -16,8 +16,8 @@ import {IdeaDetailsComponent} from './idea-details.component';
 })
 
 export class IdeasComponent {
-  public ideaSubscription: Observable<Array<Idea>>;;
-  public ideas: any;
+  public ideas: Observable<Array<Idea>>;
+  public selectedIdea: Observable<Idea>;
   constructor(public ideaService: IdeaService,
               private _router: Router,
               private _store: Store<AppStore>) {
@@ -25,6 +25,7 @@ export class IdeasComponent {
                 this.ideas = ideaService.ideas;
               }
   goToDetails(idea) {
+    this._store.dispatch({type: 'SELECT_IDEA', payload: idea});
     this._router.navigate(['IdeaDetails', { id: idea.id }]);
   }
 }

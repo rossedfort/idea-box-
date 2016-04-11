@@ -4,15 +4,14 @@
     <p>id: {{idea.id}}</p>
   </div>
   <form [ngFormModel]="ideaForm">
-    <div style="margin-top: 25px">
-      <label>title: </label>
-      <input required ngControl="title" [(ngModel)]="idea.title" placeholder="title" />
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control title-input" required ngControl="title">
     </div>
-    <div style="margin-top: 25px">
-      <label>body: </label>
-      <input required ngControl="body" [(ngModel)]="idea.body" placeholder="body" />
+    <div class="form-group">
+      <label for="body">Body</label>
+      <input type="text" class="form-control body-input" required ngControl="body">
     </div>
-    <input required ngControl="id" [(ngModel)]="idea.id" type="hidden" placeholder="{{idea.id}}" />
-    <button (click)="onUpdate(ideaForm.value)">Update</button>
+    <button type="submit" (click)="onUpdate(ideaForm.value)">Submit</button>
   </form>
 </div>

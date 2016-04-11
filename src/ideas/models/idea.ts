@@ -19,7 +19,16 @@ export const ideas = (state: any = [], {type, payload}) => {
   }
 };
 
+export const selectedIdea = (state: any = null, {type, payload}) => {
+  switch (type) {
+    case 'SELECT_IDEA':
+      return payload;
+    default:
+      return state;
+  }
+};
+
 export interface AppStore {
   ideas: Idea[];
-
+  selectedIdea: Idea;
 }
