@@ -46,7 +46,7 @@ export class IdeaService {
     this.http.put(url, reqBody, {headers: headers})
       .map(res => res.json())
       .catch(this.handleError)
-      .subscribe(action => this.store.dispatch({ type: 'UPDATE_IDEA' }));
+      .subscribe(payload => this.store.dispatch({ type: 'UPDATE_IDEA', payload: payload }));
   }
   private handleError (error: Response) {
     console.error(error);

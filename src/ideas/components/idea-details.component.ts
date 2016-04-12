@@ -14,11 +14,11 @@ import { Idea, AppStore } from '../models/idea';
 })
 
 export class IdeaDetailsComponent implements OnInit {
-  ideaSubscription: Observable<Idea>;
-  idea: Idea;
-  ideaForm: Object;
-  originalName: string;
-  selectedIdea: Idea;
+  public ideaSubscription: Observable<Idea>;
+  public idea: Idea;
+  public ideaForm: Object;
+  public originalName: string;
+  public selectedIdea: Idea;
   constructor(private _params: RouteParams,
               private fb: FormBuilder,
               private _store: Store<AppStore>,
@@ -40,14 +40,14 @@ export class IdeaDetailsComponent implements OnInit {
           this.idea = idea;
     });
   }
-  resetIdea() {
-    let emptyItem: Idea = {id: null, title: '', body: ''};
-    this._store.dispatch({type: 'SELECT_ITEM', payload: emptyItem});
-  }
   onUpdate(ideaForm, event) {
     event.preventDefault();
     this._ideaService.updateIdea(ideaForm.id, ideaForm.title, ideaForm.body);
     this._router.navigate(['IdeasComponent']);
     this.resetIdea();
+  }
+  resetIdea() {
+    let emptyItem: Idea = {id: null, title: '', body: ''};
+    this._store.dispatch({type: 'SELECT_ITEM', payload: emptyItem});
   }
 }
