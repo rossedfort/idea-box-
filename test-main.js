@@ -23,7 +23,8 @@ System.config({
   defaultJSExtensions: true,
   paths: {
     'angular2/*': 'node_modules/angular2/*.js',
-    'rxjs/*': 'node_modules/rxjs/*.js'
+    'rxjs/*': 'node_modules/rxjs/*.js',
+    '@ngrx/store' : '/base/node_modules/@ngrx/store/dist/store.js'
   }
 });
 

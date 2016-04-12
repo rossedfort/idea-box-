@@ -12,6 +12,6 @@
       <label for="body">Body</label>
       <input type="text" class="form-control body-input" required ngControl="body">
     </div>
-    <button type="submit" (click)="onUpdate(ideaForm.value)">Submit</button>
+    <button type="submit" (click)="onUpdate(ideaForm.value, $event)">Submit</button>
   </form>
 </div>

@@ -1,9 +1,12 @@
 import { it, describe, expect, inject, beforeEachProviders } from 'angular2/testing';
 import { IdeaService } from '../../shared/services/idea.service';
+import { ideas, selectedIdea } from '../../ideas/models/idea';
+
 import { BaseRequestOptions, Http } from 'angular2/http';
 import { Observable } from 'rxjs/Rx';
 import { provide } from 'angular2/core';
 import { MockBackend } from 'angular2/http/testing';
+import { provideStore } from '@ngrx/store';
 
 export function main () {
   describe('Idea Service', () => {
@@ -18,6 +21,7 @@ export function main () {
         deps: [MockBackend, BaseRequestOptions]
       }),
       provide(IdeaService, {useClass: MockIdeaData}),
+      provideStore({ideas: ideas, selectedIdea: selectedIdea}),
       MockBackend,
       BaseRequestOptions
     ]);

@@ -1,10 +1,13 @@
 import { it, describe, expect, inject, beforeEachProviders } from 'angular2/testing';
 import { IdeaFormComponent } from './idea-form.component';
 import { IdeaService } from '../../shared/services/idea.service';
+import { ideas, selectedIdea } from '../models/idea';
+
 import { BaseRequestOptions, Http } from 'angular2/http';
 import { Observable } from 'rxjs/Rx';
 import { provide } from 'angular2/core';
 import { MockBackend } from 'angular2/http/testing';
+import { provideStore } from '@ngrx/store';
 
 export function main () {
   describe('Idea Form Component', () => {
@@ -20,6 +23,7 @@ export function main () {
       }),
       IdeaFormComponent,
       provide(IdeaService, {useClass: MockIdeaData}),
+      provideStore({ideas: ideas, selectedIdea: selectedIdea})
     ]);
 
     it('Should have an onSubmit() method', inject([IdeaFormComponent], (ideaFormComponent) => {

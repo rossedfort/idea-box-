@@ -27,6 +27,7 @@ export class IdeaDetailsComponent implements OnInit {
                 this.ideaSubscription = _store.select('selectedIdea');
                 this.ideaSubscription.subscribe(idea => this.selectedIdea = idea);
                 this.ideaForm = fb.group({
+                  id: [this.selectedIdea.id, Validators.required],
                   title: [this.selectedIdea.title, Validators.required],
                   body: [this.selectedIdea.body, Validators.required]
                 });
@@ -39,8 +40,14 @@ export class IdeaDetailsComponent implements OnInit {
           this.idea = idea;
     });
   }
-  onUpdate(ideaForm) {
+  resetIdea() {
+    let emptyItem: Idea = {id: null, title: '', body: ''};
+    this._store.dispatch({type: 'SELECT_ITEM', payload: emptyItem});
+  }
+  onUpdate(ideaForm, event) {
+    event.preventDefault();
     this._ideaService.updateIdea(ideaForm.id, ideaForm.title, ideaForm.body);
     this._router.navigate(['IdeasComponent']);
+    this.resetIdea();
   }
 }
