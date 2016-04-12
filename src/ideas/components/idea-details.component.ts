@@ -40,8 +40,7 @@ export class IdeaDetailsComponent implements OnInit {
           this.idea = idea;
     });
   }
-  onUpdate(ideaForm, event) {
-    event.preventDefault();
+  onUpdate(ideaForm) {
     this._ideaService.updateIdea(ideaForm.id, ideaForm.title, ideaForm.body);
     this._router.navigate(['IdeasComponent']);
     this.resetIdea();

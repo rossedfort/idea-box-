@@ -14,6 +14,7 @@ import {IdeaService} from '../../shared/services/idea.service';
 
 export class IdeaFormComponent {
   public ideaForm: Object;
+  public fb: FormBuilder;
   constructor(private _ideaService: IdeaService, fb: FormBuilder) {
     this.ideaForm = fb.group({
       title: ['', Validators.required],

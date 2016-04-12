@@ -12,7 +12,7 @@ import {IdeaDetailsComponent} from './idea-details.component';
     selector: 'ideas',
     templateUrl: './ideas.component.html',
     directives: [IdeaDetailsComponent, NgFor],
-    moduleId: module.id,
+    moduleId: module.id
 })
 
 export class IdeasComponent {
@@ -27,5 +27,8 @@ export class IdeasComponent {
   goToDetails(idea) {
     this._store.dispatch({type: 'SELECT_IDEA', payload: idea});
     this._router.navigate(['IdeaDetails', { id: idea.id }]);
+  }
+  deleteIdea(idea){
+    this.ideaService.deleteIdea(idea.id)
   }
 }

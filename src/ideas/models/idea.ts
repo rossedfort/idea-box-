@@ -15,6 +15,10 @@ export const ideas = (state: any = [], {type, payload}) => {
       return state.map(idea => {
         return idea.id === payload.id ? Object.assign({}, idea, payload) : idea;
       });
+    case 'DELETE_IDEA':
+      return state.filter(item => {
+        return item.id !== payload.id;
+      });
     default:
       return state;
   }

@@ -48,6 +48,15 @@ export class IdeaService {
       .catch(this.handleError)
       .subscribe(payload => this.store.dispatch({ type: 'UPDATE_IDEA', payload: payload }));
   }
+  deleteIdea(id){
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json')
+    let url = `${this._ideasUrl}/${id}`;
+    this.http.delete(url, headers)
+      .map(res => res.json())
+      .catch(this.handleError)
+      .subscribe(payload => this.store.dispatch({ type: 'DELETE_IDEA', payload: payload }));
+  }
   private handleError (error: Response) {
     console.error(error);
     return Observable.throw(error.json().error || 'Server error');
