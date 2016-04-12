@@ -29,6 +29,6 @@ export class IdeasComponent {
     this._router.navigate(['IdeaDetails', { id: idea.id }]);
   }
   deleteIdea(idea){
-    this.ideaService.deleteIdea(idea.id)
+    this.ideaService.deleteIdea(idea.id);
   }
 }

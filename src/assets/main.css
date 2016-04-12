@@ -64,22 +64,10 @@ button {
 }
 
 .idea {
+  margin-top: 50px;
   border: 1px solid #ccc;
   padding: 10px;
-  margin-top: 25px;
   box-shadow: 5px 5px 10px #ccc;
-}
-
-.title {
-  color: red;
-}
-
-.body {
-  color: blue;
-}
-
-.quality {
-  color: green;
 }
 
 .idea p {
@@ -92,6 +80,7 @@ button {
 
 .idea-details {
   margin-top: 75px;
+  height: 375px;
   width: 50%;
   border: 1px solid #ccc;
   padding: 10px;
@@ -104,4 +93,8 @@ button {
 
 .button-image {
   width: 25px;
+}
+
+.form-group {
+  padding: 15px;
 }

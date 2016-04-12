@@ -1,5 +1,5 @@
 <div *ngIf="idea" class="idea-details center">
-  <h2>{{idea.title}} details!</h2>
+  <h2>Editing Idea {{idea.id}}</h2>
   <div style="margin-top: 25px">
     <p>id: {{idea.id}}</p>
   </div>
@@ -12,6 +12,6 @@
       <label for="body">Body</label>
       <input type="text" class="form-control body-input" required ngControl="body">
     </div>
-    <button type="submit">Submit</button>
+    <button type="submit">Update</button>
   </form>
 </div>

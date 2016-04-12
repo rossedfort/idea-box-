@@ -8,8 +8,7 @@ import {IdeaDetailsComponent} from '../../ideas/components/idea-details.componen
 
 @Component({
     selector: 'idea-box-angular',
-    template: `<button [routerLink]="['IdeasComponent']" class="left button">Ideas</button>
-               <h1 class="center" style="text-align: center">Welcome to Idea Box</h1>
+    template: `<h1 class="center" style="text-align: center">Welcome to Idea Box</h1>
                <idea-form></idea-form>
                <router-outlet></router-outlet>`,
     providers: [

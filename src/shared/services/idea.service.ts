@@ -38,7 +38,7 @@ export class IdeaService {
       .map(payload => ({ type: 'CREATE_IDEA', payload }))
       .subscribe(action => this.store.dispatch(action));
   }
-  updateIdea (id, title, body) {
+  updateIdea (id, title, body): void {
     let headers = new Headers();
     let url = `${this._ideasUrl}/${id}`;
     headers.append('Content-Type', 'application/json');
@@ -48,9 +48,9 @@ export class IdeaService {
       .catch(this.handleError)
       .subscribe(payload => this.store.dispatch({ type: 'UPDATE_IDEA', payload: payload }));
   }
-  deleteIdea(id){
+  deleteIdea (id): void {
     let headers = new Headers();
-    headers.append('Content-Type', 'application/json')
+    headers.append('Content-Type', 'application/json');
     let url = `${this._ideasUrl}/${id}`;
     this.http.delete(url, headers)
       .map(res => res.json())
